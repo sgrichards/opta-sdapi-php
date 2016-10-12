@@ -1,11 +1,11 @@
 {
-    "name": "OPTA Sdapi client",
+    "name": "sgrichards/opta-sdapi-php",
     "description": "Opta SDAPI php client",
     "keywords": ["opta", "sdapi", "api", "guzzle"],
     "autoload": {
-      "psr-4": {
-        "Sdapi\\": ["src"]
-      }
+        "psr-4": {
+            "Sdapi\\": ["src"]
+        }
     },
     "config": {
         "bin-dir": "bin"
