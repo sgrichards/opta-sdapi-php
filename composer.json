@@ -1,0 +1,19 @@
+{
+    "name": "OPTA Sdapi client",
+    "description": "Opta SDAPI php client",
+    "keywords": ["opta", "sdapi", "api", "guzzle"],
+    "autoload": {
+      "psr-4": {
+        "Sdapi\\": ["src"]
+      }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    }
+}
