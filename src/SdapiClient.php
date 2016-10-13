@@ -43,16 +43,17 @@ class SdapiClient {
 
   /**
    * @param string $endpoint
-   * @param string $query
+   * @param string $filter
+   * @param array $query
    * @return mixed
-   * @throws \GuzzleHttp\Exception\GuzzleException
+   * @internal param $
    */
-  public function get($endpoint, $query)
+  public function get($endpoint, $filter = '', array $query = [])
   {
     // merge params with default params.
     $query = array_merge($query, $this->default_args);
 
-    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint", [
+    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint" . $filter, [
       'query' => $query
     ]);
 
