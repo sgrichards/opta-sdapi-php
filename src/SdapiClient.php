@@ -15,7 +15,14 @@ class SdapiClient {
 
   private $base_url = "https://api.performfeeds.com/soccerdata";
 
-  private $default_args = ['_fmt' => 'json', '_rt' => 'b'];
+  private $default_params = [
+    '_fmt' => 'json',
+    '_rt' => 'b',
+  ];
+
+  private $default_options = [
+    'connect_timeout' => 30,
+  ];
 
   /**
    * SdapiClient constructor.
@@ -50,13 +57,15 @@ class SdapiClient {
    */
   public function get($endpoint, $filter = '', array $query = [])
   {
-    // merge params with default params.
-    $query = array_merge($query, $this->default_args);
+
+    // Apply default options.
+    $options = $this->default_options;
+
+    // Merge query params with default params.
+    $options['query'] = array_merge($query, $this->default_params);
 
     // Assemble the query and gather the response.
-    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint/{$this->outletAuthToken}" . $filter, [
-      'query' => $query
-    ]);
+    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint/{$this->outletAuthToken}" . $filter, $options);
 
     return $this->handleResponse($response);
   }
@@ -65,7 +74,8 @@ class SdapiClient {
    * @param Response $response
    * @return mixed
    */
-  private function handleResponse(Response $response){
+  private function handleResponse(Response $response)
+  {
     $stream = stream_for($response->getBody());
     $data = json_decode($stream->getContents());
     return $data;
