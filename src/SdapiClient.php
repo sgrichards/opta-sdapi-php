@@ -53,7 +53,8 @@ class SdapiClient {
     // merge params with default params.
     $query = array_merge($query, $this->default_args);
 
-    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint" . $filter, [
+    // Assemble the query and gather the response.
+    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint/{$this->outletAuthToken}" . $filter, [
       'query' => $query
     ]);
 
