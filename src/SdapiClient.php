@@ -50,12 +50,12 @@ class SdapiClient {
 
   /**
    * @param string $endpoint
-   * @param string $filter
+   * @param array $filters
    * @param array $query
    * @return mixed
    * @internal param $
    */
-  public function get($endpoint, $filter = '', array $query = [])
+  public function get($endpoint, array $filters = [], array $query = [])
   {
 
     // Apply default options.
@@ -64,8 +64,16 @@ class SdapiClient {
     // Merge query params with default params.
     $options['query'] = array_merge($query, $this->default_params);
 
+    // Join filters and add preceeding forward slash.
+    if (!empty($filters)) {
+      $filters = '/' . join('/', $filters);
+    }
+    else {
+      $filters = '';
+    }
+
     // Assemble the query and gather the response.
-    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint/{$this->outletAuthToken}" . $filter, $options);
+    $response = $this->http_client->request('GET', $this->base_url . "/$endpoint/{$this->outletAuthToken}" . $filters, $options);
 
     return $this->handleResponse($response);
   }
@@ -78,6 +86,8 @@ class SdapiClient {
   {
     $stream = stream_for($response->getBody());
     $data = json_decode($stream->getContents());
+    // Append status code
+    $data->statusCode = $response->getStatusCode();
     return $data;
   }
 
