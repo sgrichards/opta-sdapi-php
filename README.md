@@ -1,7 +1,8 @@
 #OPTA Sports Data API - PHP Client
 
 
-to install run:
+To install run:
 
-    `composer install`
+`composer install`
 
+API documentation available at: http://api.performfeeds.com/soccerdata/matchstats/sdapidocumentation?_docu
