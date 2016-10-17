@@ -2,8 +2,6 @@
 
 namespace Sdapi;
 
-use Sdapi\SdapiClient;
-
 class SdapiMatch {
 
   private $client;
