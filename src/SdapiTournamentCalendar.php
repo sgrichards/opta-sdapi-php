@@ -18,22 +18,20 @@ class SdapiTournamentCalendar {
   }
 
   /**
-   * @param bool $active
+   * @param array $filters
    * @return mixed
    */
-  function getAllTournaments($active = TRUE) {
-    $filter = $active ? ['active'] : [];
-    return $this->client->get($this->feedName, $filter);
+  function getAllTournaments(array $filters = []) {
+    return $this->client->get($this->feedName, $filters);
   }
 
   /**
    * @param string $competition_id
-   * @param bool $active
+   * @param array $filters
    * @return mixed
    */
-  function getTournamentByCompetition($competition_id, $active = TRUE) {
-    $filter = $active ? ['active'] : [];
-    return $this->client->get($this->feedName, $filter, ['comp' => $competition_id]);
+  function getTournamentByCompetition($competition_id, array $filters = []) {
+    return $this->client->get($this->feedName, $filters, ['comp' => $competition_id]);
   }
 
 }
