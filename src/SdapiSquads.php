@@ -39,10 +39,18 @@ class SdapiSquads {
 
   /**
    * @param $tournament_calendar_id
+   * @param $contestant_id
    * @return mixed
    */
-  function getSquadsByTournament($tournament_calendar_id) {
-    return $this->client->get($this->feedName, [], ['tmcl' => $tournament_calendar_id]);
+  function getSquadsByTournament($tournament_calendar_id, $contestant_id = '', $detailed = FALSE) {
+
+    $query = [];  
+    !empty($contestant_id) ? $query['ctst'] = $contestant_id : NULL;
+
+    $query = $detailed ? ['detailed' => 'yes'] : [];
+    $query['tmcl'] = $tournament_calendar_id;
+
+    return $this->client->get($this->feedName, [], $query);
   }
 
 }

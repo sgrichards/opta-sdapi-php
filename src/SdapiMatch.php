@@ -51,4 +51,13 @@ class SdapiMatch {
     return $this->client->get($this->feedName, [], ['comp' => $competition_id, 'ctst' => $contestant_id]);
   }
 
+  /**
+   * @param $tournament_calendar_id
+   * @param $contestant_id
+   * @return mixed
+   */
+  function getMatchesByTournamentAndContestant($tournament_calendar_id, $contestant_id) {
+    return $this->client->get($this->feedName, [], ['tmcl' => $tournament_calendar_id, 'ctst' => $contestant_id]);
+  }
+
 }
