@@ -4,6 +4,8 @@ namespace Sdapi;
 
 class SdapiSquads {
 
+  const SDAPISQUADS_PAGE_SIZE = 999;
+
   private $client;
 
   private $feedName = 'squads';
@@ -43,6 +45,8 @@ class SdapiSquads {
    * @return mixed
    */
   function getSquadsByTournament($tournament_calendar_id, $contestant_id = '', $detailed = FALSE) {
+
+    $this->client->setParams(['_pgSz'=> self::SDAPISQUADS_PAGE_SIZE]);
 
     $query = [];  
     !empty($contestant_id) ? $query['ctst'] = $contestant_id : NULL;

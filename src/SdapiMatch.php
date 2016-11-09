@@ -4,6 +4,8 @@ namespace Sdapi;
 
 class SdapiMatch {
 
+  const SDAPIMATCH_PAGE_SIZE = 999;
+
   private $client;
 
   private $feedName = 'match';
@@ -39,6 +41,7 @@ class SdapiMatch {
    * @return mixed
    */
   function getMatchesByTournament($tournament_calendar_id) {
+    $this->client->setParams(['pgSz' => self::SDAPIMATCH_PAGE_SIZE]);
     return $this->client->get($this->feedName, [], ['tmcl' => $tournament_calendar_id]);
   }
 
@@ -48,6 +51,7 @@ class SdapiMatch {
    * @return mixed
    */
   function getMatchesByCompetitionAndContestant($competition_id, $contestant_id) {
+    $this->client->setParams(['pgSz' => self::SDAPIMATCH_PAGE_SIZE]);
     return $this->client->get($this->feedName, [], ['comp' => $competition_id, 'ctst' => $contestant_id]);
   }
 
@@ -57,6 +61,7 @@ class SdapiMatch {
    * @return mixed
    */
   function getMatchesByTournamentAndContestant($tournament_calendar_id, $contestant_id) {
+    $this->client->setParams(['pgSz' => self::SDAPIMATCH_PAGE_SIZE]);
     return $this->client->get($this->feedName, [], ['tmcl' => $tournament_calendar_id, 'ctst' => $contestant_id]);
   }
 
