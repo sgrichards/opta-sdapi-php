@@ -40,6 +40,14 @@ class SdapiClient {
   }
 
   /**
+   * Set or override default params.
+   * @param array $params
+   */
+  public function setParams(array $params = []) {
+    $this->default_params = array_merge($params, $this->default_params);
+  }
+
+  /**
    * Sets GuzzleHttp client.
    * @param Client $client
    */
