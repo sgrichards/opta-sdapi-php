@@ -28,14 +28,12 @@ class SdapiClient {
    * SdapiClient constructor.
    * @param string $outletAuthToken.
    */
-  public function __construct($outletAuthToken)
-  {
+  public function __construct($outletAuthToken) {
     $this->outletAuthToken = $outletAuthToken;
     $this->setDefaultClient();
   }
 
-  private function setDefaultClient()
-  {
+  private function setDefaultClient() {
     $this->http_client = new Client();
   }
 
@@ -51,8 +49,7 @@ class SdapiClient {
    * Sets GuzzleHttp client.
    * @param Client $client
    */
-  public function setClient($client)
-  {
+  public function setClient($client) {
     $this->http_client = $client;
   }
 
@@ -63,8 +60,7 @@ class SdapiClient {
    * @return mixed
    * @internal param $
    */
-  public function get($endpoint, array $filters = [], array $query = [])
-  {
+  public function get($endpoint, array $filters = [], array $query = []) {
 
     // Apply default options.
     $options = $this->default_options;
@@ -90,8 +86,7 @@ class SdapiClient {
    * @param Response $response
    * @return mixed
    */
-  private function handleResponse(Response $response)
-  {
+  private function handleResponse(Response $response) {
     $stream = stream_for($response->getBody());
     $data = json_decode($stream->getContents());
     // Append status code

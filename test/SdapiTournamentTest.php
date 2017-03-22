@@ -1,8 +1,7 @@
 <?php
 
 use Sdapi\SdapiClient;
-use Sdapi\SdapiTournamentCalendar;
-use GuzzleHttp\Exception\ClientException;
+use Sdapi\Endpoints\SdapiTournamentCalendar;
 
 class SdapiTournamentTest extends PHPUnit_Framework_TestCase {
 
