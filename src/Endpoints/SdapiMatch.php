@@ -56,16 +56,15 @@ class SdapiMatch extends SdapiEndpoint {
 
   /**
    * @param $competition_id
-   * @param \DatePeriod $date_range
+   * @param \DateTimeInterface $start_date
+   * @param \DateTimeInterface $end_date
    * @return mixed
    */
-  function getMatchesByCompetitionAndDateRange($competition_id, \DatePeriod $date_range) {
+  function getMatchesByCompetitionAndDateRange($competition_id, \DateTimeInterface $start_date, \DateTimeInterface $end_date) {
 
     $format = \DateTime::ISO8601;
 
-    $start_date = $date_range->getStartDate()->format($format);
-    $end_date = $date_range->getEndDate()->format($format);
-    $date_range_string = '[' . $start_date . ' TO ' . $end_date . ']';
+    $date_range_string = '[' . $start_date->format($format) . ' TO ' . $end_date->format($format) . ']';
 
     return $this->get([], ['mt.mDt' => $date_range_string, 'comp' => $competition_id]);
   }
