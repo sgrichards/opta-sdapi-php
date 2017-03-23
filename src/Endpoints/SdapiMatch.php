@@ -8,6 +8,8 @@ class SdapiMatch extends SdapiEndpoint {
 
   protected $feedName = 'match';
 
+  protected $date_format = 'Y-m-d\TH:i:s\Z';
+
   /**
    * @param $match_id
    * @return mixed
@@ -62,9 +64,7 @@ class SdapiMatch extends SdapiEndpoint {
    */
   function getMatchesByCompetitionAndDateRange($competition_id, \DateTimeInterface $start_date, \DateTimeInterface $end_date) {
 
-    $format = \DateTime::ISO8601;
-
-    $date_range_string = '[' . $start_date->format($format) . ' TO ' . $end_date->format($format) . ']';
+    $date_range_string = '[' . $start_date->format($this->date_format) . ' TO ' . $end_date->format($this->date_format) . ']';
 
     return $this->get([], ['mt.mDt' => $date_range_string, 'comp' => $competition_id]);
   }
