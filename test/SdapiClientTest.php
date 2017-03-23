@@ -1,7 +1,6 @@
 <?php
 
 use Sdapi\SdapiClient;
-use GuzzleHttp\Exception\ClientException;
 
 class SdapiClientTest extends PHPUnit_Framework_TestCase {
 

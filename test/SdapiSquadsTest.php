@@ -1,8 +1,7 @@
 <?php
 
 use Sdapi\SdapiClient;
-use Sdapi\SdapiSquads;
-use GuzzleHttp\Exception\ClientException;
+use Sdapi\Endpoints\SdapiSquads;
 
 class SdapiSquadTest extends PHPUnit_Framework_TestCase {
 
