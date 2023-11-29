@@ -6,22 +6,21 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use function GuzzleHttp\Psr7\stream_for;
-use Psr\Http\Message\ResponseInterface;
 
 class SdapiClient {
 
-  private $http_client;
+  private Client $http_client;
 
-  private $outletAuthToken;
+  private string $outletAuthToken;
 
-  private $base_url = "https://api.performfeeds.com/soccerdata";
+  private string $base_url = "https://api.performfeeds.com/soccerdata";
 
-  private $default_params = [
+  private array $default_params = [
     '_fmt' => 'json',
     '_rt' => 'b',
   ];
 
-  private $default_options = [
+  private array $default_options = [
     'connect_timeout' => 30,
   ];
 

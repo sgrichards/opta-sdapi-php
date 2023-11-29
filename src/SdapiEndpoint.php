@@ -11,14 +11,14 @@ abstract class SdapiEndpoint {
    *
    * @var \Sdapi\SdapiClient
    */
-  private $client;
+  private Client $client;
 
   /**
    * Feedname string eg. match.
    *
    * @var string
    */
-  protected $feedName;
+  protected string $feedName;
 
   /**
    * SdapiMatch constructor.

@@ -6,7 +6,7 @@ use Sdapi\SdapiEndpoint;
 
 class SdapiTournamentCalendar extends SdapiEndpoint {
 
-  protected $feedName = 'tournamentcalendar';
+  protected string $feedName = 'tournamentcalendar';
 
   /**
    * @param array $filters
