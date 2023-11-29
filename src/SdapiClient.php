@@ -4,6 +4,7 @@ namespace Sdapi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use function GuzzleHttp\Psr7\stream_for;
 use Psr\Http\Message\ResponseInterface;
 
@@ -33,7 +34,7 @@ class SdapiClient {
     $this->setDefaultClient();
   }
 
-  private function setDefaultClient() {
+  private function setDefaultClient(): void {
     $this->http_client = new Client();
   }
 
@@ -41,7 +42,7 @@ class SdapiClient {
    * Set or override default params.
    * @param array $params
    */
-  public function setParams(array $params = []) {
+  public function setParams(array $params = []): void {
     $this->default_params = array_merge($params, $this->default_params);
   }
 
@@ -49,7 +50,7 @@ class SdapiClient {
    * Sets GuzzleHttp client.
    * @param Client $client
    */
-  public function setClient($client) {
+  public function setClient(Client $client): void {
     $this->http_client = $client;
   }
 
@@ -60,7 +61,7 @@ class SdapiClient {
    * @return mixed
    * @internal param $
    */
-  public function get($endpoint, array $filters = [], array $query = []) {
+  public function get(string $endpoint, array $filters = [], array $query = []): mixed {
 
     // Apply default options.
     $options = $this->default_options;
@@ -86,8 +87,8 @@ class SdapiClient {
    * @param Response $response
    * @return mixed
    */
-  private function handleResponse(Response $response) {
-    $stream = stream_for($response->getBody());
+  private function handleResponse(Response $response): mixed {
+    $stream = Utils::streamFor($response->getBody());
     $data = json_decode($stream->getContents());
     // Append status code
     $data->statusCode = $response->getStatusCode();

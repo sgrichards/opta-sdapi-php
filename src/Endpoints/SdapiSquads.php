@@ -37,7 +37,7 @@ class SdapiSquads extends SdapiEndpoint {
 
     $this->setParams(['_pgSz'=> self::SDAPI_PAGE_SIZE]);
 
-    $query = [];  
+    $query = [];
     !empty($contestant_id) ? $query['ctst'] = $contestant_id : NULL;
 
     $query = $detailed ? ['detailed' => 'yes'] : [];
