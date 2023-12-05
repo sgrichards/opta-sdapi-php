@@ -11,14 +11,14 @@ abstract class SdapiEndpoint {
    *
    * @var \Sdapi\SdapiClient
    */
-  private $client;
+  private SdapiClient $client;
 
   /**
    * Feedname string eg. match.
    *
    * @var string
    */
-  protected $feedName;
+  protected string $feedName;
 
   /**
    * SdapiMatch constructor.
@@ -32,7 +32,7 @@ abstract class SdapiEndpoint {
    * Add to default params.
    * @param array $params
    */
-  function setParams(array $params) {
+  function setParams(array $params): void {
     $this->client->setParams($params);
   }
 
@@ -43,7 +43,7 @@ abstract class SdapiEndpoint {
    * @param array $query
    * @return mixed
    */
-  function get(array $filters = [], array $query = []) {
+  function get(array $filters = [], array $query = []): mixed {
     return $this->client->get($this->feedName, $filters, $query);
   }
 

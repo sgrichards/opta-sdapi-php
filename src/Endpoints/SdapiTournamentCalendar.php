@@ -6,13 +6,13 @@ use Sdapi\SdapiEndpoint;
 
 class SdapiTournamentCalendar extends SdapiEndpoint {
 
-  protected $feedName = 'tournamentcalendar';
+  protected string $feedName = 'tournamentcalendar';
 
   /**
    * @param array $filters
    * @return mixed
    */
-  function getAllTournaments(array $filters = []) {
+  function getAllTournaments(array $filters = []): mixed {
     return $this->get($filters);
   }
 
@@ -21,7 +21,7 @@ class SdapiTournamentCalendar extends SdapiEndpoint {
    * @param array $filters
    * @return mixed
    */
-  function getTournamentByCompetition($competition_id, array $filters = []) {
+  function getTournamentByCompetition(string $competition_id, array $filters = []): mixed {
     return $this->get($filters, ['comp' => $competition_id]);
   }
 
