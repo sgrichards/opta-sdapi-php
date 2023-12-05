@@ -6,63 +6,64 @@ use Sdapi\SdapiEndpoint;
 
 class SdapiMatch extends SdapiEndpoint {
 
-  protected $feedName = 'match';
+  protected string $feedName = 'match';
 
-  protected $date_format = 'Y-m-d\TH:i:s\Z';
+  protected string $date_format = 'Y-m-d\TH:i:s\Z';
 
   /**
-   * @param $match_id
+   * @param string $match_id
+   * @param bool $live
    * @return mixed
    */
-  function getMatch($match_id, $live = FALSE) {
+  function getMatch(string $match_id, bool $live = FALSE): mixed {
     $live  = $live ? ['live' => 'yes'] : [];
     return $this->get([$match_id], $live);
   }
 
   /**
-   * @param $match_id
+   * @param string $match_id
    * @return mixed
    */
-  function getLiveMatch($match_id) {
+  function getLiveMatch(string $match_id): mixed {
     return $this->getMatch($match_id, TRUE);
   }
 
   /**
-   * @param $tournament_calendar_id
+   * @param string $tournament_calendar_id
    * @return mixed
    */
-  function getMatchesByTournament($tournament_calendar_id) {
+  function getMatchesByTournament(string $tournament_calendar_id): mixed {
     $this->setParams(['_pgSz' => self::SDAPI_PAGE_SIZE]);
     return $this->get([], ['tmcl' => $tournament_calendar_id]);
   }
 
   /**
-   * @param $competition_id
-   * @param $contestant_id
+   * @param string $competition_id
+   * @param string $contestant_id
    * @return mixed
    */
-  function getMatchesByCompetitionAndContestant($competition_id, $contestant_id) {
+  function getMatchesByCompetitionAndContestant(string $competition_id, string $contestant_id): mixed {
     $this->setParams(['_pgSz' => self::SDAPI_PAGE_SIZE]);
     return $this->get([], ['comp' => $competition_id, 'ctst' => $contestant_id]);
   }
 
   /**
-   * @param $tournament_calendar_id
-   * @param $contestant_id
+   * @param string $tournament_calendar_id
+   * @param string $contestant_id
    * @return mixed
    */
-  function getMatchesByTournamentAndContestant($tournament_calendar_id, $contestant_id) {
+  function getMatchesByTournamentAndContestant(string $tournament_calendar_id, string $contestant_id): mixed {
     $this->setParams(['_pgSz' => self::SDAPI_PAGE_SIZE]);
     return $this->get([], ['tmcl' => $tournament_calendar_id, 'ctst' => $contestant_id]);
   }
 
   /**
-   * @param $competition_id
+   * @param string $competition_id
    * @param \DateTimeInterface $start_date
    * @param \DateTimeInterface $end_date
    * @return mixed
    */
-  function getMatchesByCompetitionAndDateRange($competition_id, \DateTimeInterface $start_date, \DateTimeInterface $end_date) {
+  function getMatchesByCompetitionAndDateRange(string $competition_id, \DateTimeInterface $start_date, \DateTimeInterface $end_date): mixed {
 
     $date_range_string = '[' . $start_date->format($this->date_format) . ' TO ' . $end_date->format($this->date_format) . ']';
 

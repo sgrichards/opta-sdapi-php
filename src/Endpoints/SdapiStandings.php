@@ -6,13 +6,13 @@ use Sdapi\SdapiEndpoint;
 
 class SdapiStandings extends SdapiEndpoint {
 
-  protected $feedName = 'standings';
+  protected string $feedName = 'standings';
 
   /**
-   * @param $tournament_calendar_id
+   * @param string $tournament_calendar_id
    * @return mixed
    */
-  function getStandingsByTournament($tournament_calendar_id) {
+  function getStandingsByTournament(string $tournament_calendar_id): mixed {
     return $this->get([], ['tmcl' => $tournament_calendar_id]);
   }
 

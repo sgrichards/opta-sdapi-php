@@ -6,13 +6,14 @@ use Sdapi\SdapiEndpoint;
 
 class SdapiSquads extends SdapiEndpoint {
 
-  protected $feedName = 'squads';
+  protected string $feedName = 'squads';
 
   /**
-   * @param $contestant_id
+   * @param string $contestant_id
+   * @param bool $detailed
    * @return mixed
    */
-  function getSquad($contestant_id, $detailed = FALSE) {
+  function getSquad(string $contestant_id, bool $detailed = FALSE): mixed {
 
     $query = $detailed ? ['detailed' => 'yes'] : [];
     $query['ctst'] = $contestant_id;
@@ -21,23 +22,24 @@ class SdapiSquads extends SdapiEndpoint {
   }
 
   /**
-   * @param $contestant_id
+   * @param string $contestant_id
    * @return mixed
    */
-  function getDetailedSquad($contestant_id) {
+  function getDetailedSquad(string $contestant_id): mixed {
     return $this->getSquad($contestant_id, TRUE);
   }
 
   /**
-   * @param $tournament_calendar_id
-   * @param $contestant_id
+   * @param string $tournament_calendar_id
+   * @param string $contestant_id
+   * @param $detailed
    * @return mixed
    */
-  function getSquadsByTournament($tournament_calendar_id, $contestant_id = '', $detailed = FALSE) {
+  function getSquadsByTournament(string $tournament_calendar_id, string $contestant_id = '', $detailed = FALSE): mixed {
 
     $this->setParams(['_pgSz'=> self::SDAPI_PAGE_SIZE]);
 
-    $query = [];  
+    $query = [];
     !empty($contestant_id) ? $query['ctst'] = $contestant_id : NULL;
 
     $query = $detailed ? ['detailed' => 'yes'] : [];
