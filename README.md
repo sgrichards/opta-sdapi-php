@@ -5,4 +5,4 @@ To install run:
 
 `composer install`
 
-API documentation available at: http://api.performfeeds.com/soccerdata/matchstats/sdapidocumentation?_docu
+API documentation available at: https://documentation.statsperform.com/docs/rh/sdapi/Topics/soccer/index.htm
